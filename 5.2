@@ -1,0 +1,20 @@
+a = input("Введите слово: ")
+
+glas = 'aeiou'
+mass = {}
+glass_total = 0
+
+for i in glas:
+    count = a.count(i)
+    mass[i] = count
+    glass_total += count
+
+sogl_total = len(a) - glass_total
+
+if 0 in mass.values():
+    print(False)
+else:
+    print("Количество гласных:", glass_total)
+    print("Количество согласных:", sogl_total)
+    for i in glas:
+        print(f"{i}: {mass[i]}")
