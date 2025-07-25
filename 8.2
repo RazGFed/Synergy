@@ -1,0 +1,5 @@
+n = int(input())
+mass = list(map(int, input().split()))
+last = mass.pop(n-1)
+mass.insert(0, last)
+print(*mass[:n])

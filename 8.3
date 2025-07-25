@@ -1,0 +1,16 @@
+m = int(input()) #масса лодка
+n = int(input()) #количество людей
+mass = []
+for i in range(n):
+    tmp = int(input())
+    mass.append(tmp)
+mass.sort()
+h = 0
+z = n - 1
+boat = 0
+while h <= z:
+    if mass[h] + mass[z] <= m:
+        h += 1
+    z -= 1
+    boat += 1
+print(boat)
