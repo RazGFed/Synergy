@@ -1,0 +1,9 @@
+n = list(map(int, input().split()))
+used = set()
+
+for i in n:
+    if i in used:
+        print("YES", '-', i)
+    else:
+        print("NO", '-', i)
+        used.add(i)

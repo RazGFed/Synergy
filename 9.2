@@ -1,0 +1,12 @@
+n = int(input('Введите количетсво чисел в первом множестве: '))
+set1 = set()
+for i in range(n):
+    set1.add(int(input()))
+
+m = int(input('Введите количество чисел во втором множестве: '))
+set2 = set()
+for i in range(n):
+    set2.add(int(input()))
+
+res = set1.intersection(set2)
+print('Результат:', len(res))
