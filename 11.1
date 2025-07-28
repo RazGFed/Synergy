@@ -1,0 +1,15 @@
+def factorial(a):
+    res = 1
+    for i in range(2, a + 1):
+        res *= i
+    return res
+    
+n = int(input('Введите натуральное число: '))
+factorial_n = factorial(n)
+b = []
+
+for i in range(factorial_n, 0, -1):
+    b.append(factorial(i))
+
+print(b)
+
