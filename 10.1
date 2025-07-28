@@ -1,0 +1,22 @@
+pets = dict()
+name = input('Имя питомца: ')
+type = input('Вид питомца: ')
+age = int(input('Возраст питомца: '))
+owner = input('Имя владельца: ')
+
+pets[name] = {"Вид питомца": type,
+              "Возраст питомца": age,
+              "Имя владельца": owner}
+
+if 11 <= age % 100 <= 14:
+    year = "лет"
+elif age % 10 == 1:
+    year = "год"
+elif 2 <= age % 10 <= 4:
+    year = "года"
+else:
+    year = "лет"
+
+for i in pets.keys():
+    res = pets[i]
+    print(f'Это {(res["Вид питомца"]).lower()} по кличке "{i}". Возраст питомца: {res["Возраст питомца"]} {year}. Имя владельца: {res["Имя владельца"]}.')
