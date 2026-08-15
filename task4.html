@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Калькулятор</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #2196f3,
+                #7b1fa2
+            );
+        }
+
+        .calculator {
+            width: 450px;
+            padding: 35px;
+
+            background: rgba(255, 255, 255, 0.95);
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0, 0, 0, 0.25);
+
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 25px;
+
+            color: #333;
+        }
+
+        .inputs {
+            display: flex;
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 50%;
+
+            padding: 14px;
+
+            border: 2px solid #ddd;
+            border-radius: 8px;
+
+            font-size: 18px;
+
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #7b1fa2;
+        }
+
+        .buttons {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+        }
+
+        button {
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            color: white;
+
+            cursor: pointer;
+
+            background: linear-gradient(
+                135deg,
+                #2196f3,
+                #7b1fa2
+            );
+
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+        }
+
+        .result {
+            min-height: 60px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            background-color: #f0f0f0;
+
+            color: #333;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            word-break: break-word;
+        }
+
+        .error {
+            background-color: #ffebee;
+
+            color: #c62828;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <h1>Калькулятор</h1>
+
+        <div class="inputs">
+
+            <input
+                type="text"
+                id="number1"
+                placeholder="Первое число"
+            >
+
+            <input
+                type="text"
+                id="number2"
+                placeholder="Второе число"
+            >
+
+        </div>
+
+        <div class="buttons">
+
+            <button id="sum">
+                Сумма
+            </button>
+
+            <button id="subtract">
+                Разность
+            </button>
+
+            <button id="multiply">
+                Произведение
+            </button>
+
+            <button id="divide">
+                Деление
+            </button>
+
+        </div>
+
+        <div id="result" class="result">
+            Результат
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const number1 = document.getElementById("number1");
+        const number2 = document.getElementById("number2");
+
+        const result = document.getElementById("result");
+
+        const sumButton = document.getElementById("sum");
+        const subtractButton = document.getElementById("subtract");
+        const multiplyButton = document.getElementById("multiply");
+        const divideButton = document.getElementById("divide");
+
+        function getNumbers() {
+
+            const a = Number(number1.value);
+            const b = Number(number2.value);
+
+            if (
+                number1.value.trim() === "" ||
+                number2.value.trim() === "" ||
+                !Number.isFinite(a) ||
+                !Number.isFinite(b)
+            ) {
+
+                result.textContent = "Ошибка: введите два числа";
+
+                result.classList.add("error");
+
+                return null;
+            }
+
+            result.classList.remove("error");
+
+            return {
+                a: a,
+                b: b
+            };
+        }
+
+
+        function sum(a, b) {
+
+            return a + b;
+        }
+
+
+        function subtract(a, b) {
+
+            return a - b;
+        }
+
+
+        function multiply(a, b) {
+
+            return a * b;
+        }
+
+
+        function divide(a, b) {
+
+            if (b === 0) {
+
+                return "Ошибка: деление на ноль невозможно";
+            }
+
+            return a / b;
+        }
+
+
+        sumButton.addEventListener("click", function () {
+
+            const numbers = getNumbers();
+
+            if (numbers === null) {
+                return;
+            }
+
+            result.textContent = sum(
+                numbers.a,
+                numbers.b
+            );
+        });
+
+        subtractButton.addEventListener("click", function () {
+
+            const numbers = getNumbers();
+
+            if (numbers === null) {
+                return;
+            }
+
+            result.textContent = subtract(
+                numbers.a,
+                numbers.b
+            );
+        });
+
+        multiplyButton.addEventListener("click", function () {
+
+            const numbers = getNumbers();
+
+            if (numbers === null) {
+                return;
+            }
+
+            result.textContent = multiply(
+                numbers.a,
+                numbers.b
+            );
+        });
+
+
+        divideButton.addEventListener("click", function () {
+
+            const numbers = getNumbers();
+
+            if (numbers === null) {
+                return;
+            }
+
+            result.textContent = divide(
+                numbers.a,
+                numbers.b
+            );
+        });
+
+    </script>
+
+</body>
+
+</html>
